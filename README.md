@@ -8,7 +8,7 @@ A simulation using random RGB inputs. Colors with average RGB distance of < 10 s
 
 
 <p align="center">
-  <img src="images/example.gif" alt="Demo" width="80%" height="80%"/>
+  <img src="images/example2.gif" alt="Demo" width="80%" height="80%"/>
 </p>
 
 <!--<img src="images/example.gif"  width="80%" height="80%">-->
