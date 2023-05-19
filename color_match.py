@@ -7,7 +7,7 @@ import pandas as pd
 import random
 import pygame,sys
 import pygame.freetype
-import time
+
 
 # Set up pygame
 pygame.init()
@@ -175,8 +175,6 @@ def event_handler(color_num,in_color_code,df):
 				color_num=len(in_color_list)-1
 			else:
 				color_num-=1
-		elif (event.type == pygame.KEYDOWN and (event.key == pygame.K_r)):
-			color_num=0
 	return color_num
 
 
@@ -192,14 +190,12 @@ if __name__ == "__main__":
 	# Start with the first entry
 	color_num=0
 
-	FPS=1
+	FPS=5
 
 	col=50
 
 	while True:
 
-		if color_num==1:
-			time.sleep(7)
 		in_color_code=in_color_list[color_num]
 
 		clock.tick(FPS)
@@ -228,7 +224,5 @@ if __name__ == "__main__":
 		# Blit average of RGB difference
 		FONT_DIN.render_to (screen, (COL+150,110), f"DIFF AVG", YELLOW,style=0,size=20)
 		HELVETICA.render_to(screen, (COL+150,135), f"{min_diff}", WHITE,style=0,size=34)
-
-		color_num+=1
 
 		pygame.display.update()
