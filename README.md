@@ -14,9 +14,9 @@ Color names and values acquired from the following sources:
 
 ### Distribution of Available Colors
 
-<img src="images/red.png"  width="100%" height="100%">
-<img src="images/green.png"  width="100%" height="100%">
-<img src="images/blue.png"  width="100%" height="100%">
+<img src="images/red.png"  width="60%" height="60%">
+<img src="images/green.png"  width="60%" height="60%">
+<img src="images/blue.png"  width="60%" height="60%">
 
 ## Screen Recording
 A simulation using random RGB inputs. Colors with average RGB distance of < 10 seem to match pretty closely. However, some colors still look quite different even with < 10 difference. Probably a subjective thing depending upon the monitor and the viewers vision.
