@@ -12,7 +12,7 @@ A simulation using random RGB inputs. Colors with average RGB distance of < 10 s
 https://color-matcher.readthedocs.io/en/latest/index.html 
 ## Database
 Color names and values acquired from the following sources:
-* https://web.njit.edu/~walsh/rgb.html (Copyright © 2010 Kevin J. Walsh)
+* [RGB to Color Name Mapping](https://web.njit.edu/~walsh/rgb.html) (Copyright © 2010 Kevin J. Walsh)
 * [[Wikipedia] List of colors: A-F](https://en.wikipedia.org/wiki/List_of_colors:_A-F)
 * [[Wikipedia] List of colors: G-M](https://en.wikipedia.org/wiki/List_of_colors:_G-M)
 * [[Wikipedia] List of colors: N-Z](https://en.wikipedia.org/wiki/List_of_colors:_N-Z)
