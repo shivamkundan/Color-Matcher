@@ -1,44 +1,47 @@
 #!/usr/local/bin/python3
-
 import pandas as pd
 import random
 import pygame,sys
 import pygame.freetype
 
+# Set up pygame
 pygame.init()
+clock = pygame.time.Clock()
 
-screen_w=440
-screen_h=200
+# Initialize display
+screen_w=640
+screen_h=240
 screen = pygame.display.set_mode((screen_w, screen_h),pygame.RESIZABLE | pygame.HWSURFACE | pygame.DOUBLEBUF | pygame.ASYNCBLIT)
 pygame.display.set_caption('Color Matcher')
-black = pygame.Color(0,0,0)
-white = pygame.Color(255,255,255)
-red = pygame.Color(255,0,0)
 
+# Colors
+BLACK = pygame.Color(0, 0, 0)
+YELLOW=pygame.Color(255, 153, 0)
+WHITE=pygame.Color(255,255,255)
+RED=pygame.Color(255,0,0)
+
+# Load fonts
 HELVETICA=pygame.freetype.Font('HelveticaNeue.ttc')
+FONT_DIN=pygame.freetype.Font('din-1451-fette-breitschrift-1936.ttf')
 
-clock = pygame.time.Clock()
+
 # ==========================================================================
-rand_colors=[]
-
-for i in range(300):
-	new=(random.randrange(0, 255+1),random.randrange(0, 255+1),random.randrange(0, 255+1))
-	# print (f"new:{new}")
-	rand_colors.append(new)
-
-in_color_list=[(0,72,186),(0,0,0),(132,17,12),(213,203,77),\
-				(128,0,0),(64,0,0),(173,234,234),(0,120,0),(100,255,255),\
-				(70,130,109),(0,0,64),(255,128,0),\
-				(100,90,100),(122,37,29),(122,0,29),(240,230,140)]
-
-in_color_list=rand_colors+in_color_list
-FPS=5
+def random_colors(num_colors):
+	''' Returns a list of random colors of size num_colors'''
+	rand_colors=[]
+	for i in range(num_colors):
+		new=(random.randrange(0, 255+1),random.randrange(0, 255+1),random.randrange(0, 255+1))
+		# print (f"new:{new}")
+		rand_colors.append(new)
+	return rand_colors
 
 # ==========================================================================
 def rgb_to_int(in_color):
+	''' Converts RGB -> hex -> integer.'''
 	return (int('%02x%02x%02x' % in_color,16))
 
 def hex_to_rgb(raw):
+	''' Convert hex code to RGB values for 8-bit color'''
 	print (f"raw:{raw}")
 
 	# If R=0
@@ -58,10 +61,12 @@ def hex_to_rgb(raw):
 	return (R,G,B)
 
 def hex_to_int(raw):
+	''' Converts hexadecimal number to integer'''
 	return rgb_to_int(hex_to_rgb(raw))
 
 # ==========================================================================
 def color_match_by_hex(input_color,df):
+	''' Finds the closest color by comparing absolute hex values.'''
 	rows=df.shape[0]
 	min_diff=100000000
 	min_name=""
@@ -96,6 +101,7 @@ def color_match_by_hex(input_color,df):
 # ==========================================================================
 
 def color_match_by_rgb(input_color,df):
+	''' Finds the closest color by comparing avg of RGB difference.'''
 	rows=df.shape[0]
 	min_diff=100000000
 	min_diff_rgb=None
@@ -109,8 +115,6 @@ def color_match_by_rgb(input_color,df):
 		G=df["G"][index]
 		B=df["B"][index]
 		name=df["Name"][index]
-
-
 
 		# Calculate
 		diff_R=abs(R-input_color[0])
@@ -142,12 +146,15 @@ def color_match_by_rgb(input_color,df):
 ROW=screen_h//4
 COL=screen_w//2
 def blit_current_color(in_color):
-	pygame.draw.rect(screen, in_color, (COL,ROW, 100, 30))
+	''' Blits rectangle with input color'''
+	pygame.draw.rect(screen, in_color, (280,30, 140, 40))
 
 def blit_closest_color(in_color):
-	pygame.draw.rect(screen, in_color, (COL,ROW+50, 100, 30))
+	''' Blits rectangle with closest match color'''
+	pygame.draw.rect(screen, in_color, (280,110, 140, 40))
 
-def event_handler(color_num):
+def event_handler(color_num,in_color_code,df):
+	''' For handling quit, key_left, key_right.'''
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and (event.key == pygame.K_ESCAPE or event.key==113)):
 			pygame.quit()
@@ -167,34 +174,50 @@ def event_handler(color_num):
 
 if __name__ == "__main__":
 
+	# Load database of colors
 	df=pd.read_excel("Colors_RGB_list.xlsx",sheet_name="All",header=0,verbose=False)
 
+	# List of 300 random colors
+	num_colors=300
+	in_color_list=random_colors(num_colors)
+
+	# Start with the first entry
 	color_num=0
+
+	FPS=5
+
+	col=50
 
 	while True:
 
 		in_color_code=in_color_list[color_num]
 
 		clock.tick(FPS)
+		color_num=event_handler(color_num,in_color_code,df)
+		screen.fill(BLACK)
 
-
-		color_num=event_handler(color_num)
-
-
-		screen.fill(black)
-
-		HELVETICA.render_to(screen, (30,50), f"[{color_num}] {in_color_code}", white,style=0,size=18)
+		# Blit input color
+		FONT_DIN.render_to(screen, (col,30), f"INPUT #{color_num+1}/{num_colors}", YELLOW,style=0,size=20)
+		HELVETICA.render_to(screen, (col,55), f"{in_color_code}", WHITE,style=0,size=22)
 		blit_current_color(in_color_code)
 
-		# Find closest match
+		# Find closest match to input color
 		closest_match,min_diff_rgb,min_diff,min_name=color_match_by_rgb(in_color_code,df)
-
-		HELVETICA.render_to(screen, (30,100), f"{min_name}", white,style=0,size=18)
-		HELVETICA.render_to(screen, (30,120), f"{closest_match}", white,style=0,size=18)
-		HELVETICA.render_to(screen, (30,140), f"diff: {min_diff_rgb}", white,style=0,size=16)
-		HELVETICA.render_to(screen, (30,160), f"diff avg: {min_diff}", white,style=0,size=16)
-
 		blit_closest_color(closest_match)
+
+		row=120
+		FONT_DIN.render_to (screen, (col,row), f"CLOSEST MATCH", YELLOW,style=0,size=18)
+		HELVETICA.render_to(screen, (col,row+20), f"{min_name}", WHITE,style=0,size=26)
+		HELVETICA.render_to(screen, (col,row+50), f"{closest_match}", WHITE,style=0,size=22)
+
+		# ----------------------------------------------
+		FONT_DIN.render_to (screen, (COL+150,30), f"DIFF", YELLOW,style=0,size=20)
+		HELVETICA.render_to(screen, (COL+150,55), f"{min_diff_rgb}", WHITE,style=0,size=24)
+
+		FONT_DIN.render_to (screen, (COL+150,110), f"DIFF AVG", YELLOW,style=0,size=20)
+		HELVETICA.render_to(screen, (COL+150,135), f"{min_diff}", WHITE,style=0,size=34)
+
+
 
 
 		pygame.display.update()
