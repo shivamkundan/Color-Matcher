@@ -3,7 +3,7 @@ import pandas as pd
 import random
 import pygame,sys
 import pygame.freetype
-import time
+
 
 # Set up pygame
 pygame.init()
@@ -37,6 +37,7 @@ def random_colors(num_colors):
 	return rand_colors
 
 # ==========================================================================
+''' Color conversion functions '''
 def rgb_to_int(in_color):
 	''' Converts RGB -> hex -> integer.'''
 	return (int('%02x%02x%02x' % in_color,16))
@@ -185,17 +186,11 @@ if __name__ == "__main__":
 	# Start with the first entry
 	color_num=0
 
-	FPS=0.5
+	FPS=5
 
 	col=50
 
-
-
 	while True:
-
-		if color_num==1:
-			time.sleep(10)
-		color_num+=1
 
 		in_color_code=in_color_list[color_num]
 
@@ -212,19 +207,18 @@ if __name__ == "__main__":
 		closest_match,min_diff_rgb,min_diff,min_name=color_match_by_rgb(in_color_code,df)
 		blit_closest_color(closest_match)
 
+		# Blit output color
 		row=120
 		FONT_DIN.render_to (screen, (col,row), f"CLOSEST MATCH", YELLOW,style=0,size=18)
 		HELVETICA.render_to(screen, (col,row+20), f"{min_name}", WHITE,style=0,size=26)
 		HELVETICA.render_to(screen, (col,row+50), f"{closest_match}", WHITE,style=0,size=22)
 
-		# ----------------------------------------------
+		# Blit RGB difference
 		FONT_DIN.render_to (screen, (COL+150,30), f"DIFF", YELLOW,style=0,size=20)
 		HELVETICA.render_to(screen, (COL+150,55), f"{min_diff_rgb}", WHITE,style=0,size=24)
 
+		# Blit average of RGB difference
 		FONT_DIN.render_to (screen, (COL+150,110), f"DIFF AVG", YELLOW,style=0,size=20)
 		HELVETICA.render_to(screen, (COL+150,135), f"{min_diff}", WHITE,style=0,size=34)
-
-
-
 
 		pygame.display.update()
