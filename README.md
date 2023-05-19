@@ -7,7 +7,7 @@ Developed for use in my [tricorder project](https://github.com/shivamkundan/Tric
 A simulation using random RGB inputs. Colors with average RGB distance of < 10 seem to match pretty closely. However, some colors still look quite different even with < 10 difference. Probably a subjective thing depending upon the monitor and the viewers vision.
 
 <p align="center">
-  <img src="images/example.gif" alt="Sublime's custom image"/>
+  <img src="images/example.gif" alt="Demo" width="80%" height="80%"/>
 </p>
 
 <!--<img src="images/example.gif"  width="80%" height="80%">-->
