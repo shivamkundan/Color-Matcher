@@ -1,7 +1,7 @@
 # Color Matcher
 Matches input RGB values to closest color in the stored database. 
  
-Developed for use in my tricorder project with its photo-spectrometer (AS7411) providing the input.
+Developed for use in my [tricorder project](https://github.com/shivamkundan/Tricorder-RaspberryPi) with its photo-spectrometer ([AS7411](https://www.adafruit.com/product/4698)) providing the input.
 
 ## Database
 Color names and values acquired from the following sources:

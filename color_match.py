@@ -1,4 +1,8 @@
 #!/usr/local/bin/python3
+
+'''
+Matches input RGB values to closest color in the stored database.
+'''
 import pandas as pd
 import random
 import pygame,sys
