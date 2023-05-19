@@ -3,6 +3,7 @@ import pandas as pd
 import random
 import pygame,sys
 import pygame.freetype
+import time
 
 # Set up pygame
 pygame.init()
@@ -184,11 +185,17 @@ if __name__ == "__main__":
 	# Start with the first entry
 	color_num=0
 
-	FPS=5
+	FPS=0.5
 
 	col=50
 
+
+
 	while True:
+
+		if color_num==1:
+			time.sleep(10)
+		color_num+=1
 
 		in_color_code=in_color_list[color_num]
 
