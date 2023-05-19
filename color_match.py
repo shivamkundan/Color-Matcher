@@ -26,8 +26,8 @@ WHITE=pygame.Color(255,255,255)
 RED=pygame.Color(255,0,0)
 
 # Load fonts
-HELVETICA=pygame.freetype.Font('HelveticaNeue.ttc')
-FONT_DIN=pygame.freetype.Font('din-1451-fette-breitschrift-1936.ttf')
+HELVETICA=pygame.freetype.Font('fonts/HelveticaNeue.ttc')
+FONT_DIN=pygame.freetype.Font('fonts/din-1451-fette-breitschrift-1936.ttf')
 
 
 # ==========================================================================

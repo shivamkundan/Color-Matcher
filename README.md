@@ -12,7 +12,14 @@ Color names and values acquired from the following sources:
 * [[Wikipedia] List of colors: G-M](https://en.wikipedia.org/wiki/List_of_colors:_G%25E2%2580%2593M)
 * [[Wikipedia] List of colors: N-Z](https://en.wikipedia.org/wiki/List_of_colors:_N%25E2%2580%2593Z)
 
+### Distribution of Available Colors
+
+<img src="images/red.png"  width="100%" height="100%">
+<img src="images/green.png"  width="100%" height="100%">
+<img src="images/blue.png"  width="100%" height="100%">
+
 ## Screen Recording
 A simulation using random RGB inputs. Colors with average RGB distance of < 10 seem to match pretty closely. However, some colors still look quite different even with < 10 difference. Probably a subjective thing depending upon the monitor and the viewers vision.
 
-<img src="example.gif"  width="100%" height="100%">
+<img src="images/example.gif"  width="100%" height="100%">
+
