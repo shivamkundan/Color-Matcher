@@ -3,6 +3,8 @@ Matches input RGB values to closest color in the stored database.
  
 Developed for use in my [tricorder project](https://github.com/shivamkundan/Tricorder-RaspberryPi) with its photo-spectrometer ([AS7411](https://www.adafruit.com/product/4698)) providing the input.
 
+## API Reference
+https://color-matcher.readthedocs.io/en/latest/index.html 
 ## Database
 Color names and values acquired from the following sources:
 * https://web.njit.edu/~walsh/rgb.html (Copyright © 2010 Kevin J. Walsh)
