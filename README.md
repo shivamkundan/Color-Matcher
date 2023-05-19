@@ -13,9 +13,9 @@ https://color-matcher.readthedocs.io/en/latest/index.html
 ## Database
 Color names and values acquired from the following sources:
 * https://web.njit.edu/~walsh/rgb.html (Copyright © 2010 Kevin J. Walsh)
-* [[Wikipedia] List of colors: A-F](https://en.wikipedia.org/wiki/List_of_colors:_A%25E2%2580%2593F)
-* [[Wikipedia] List of colors: G-M](https://en.wikipedia.org/wiki/List_of_colors:_G%25E2%2580%2593M)
-* [[Wikipedia] List of colors: N-Z](https://en.wikipedia.org/wiki/List_of_colors:_N%25E2%2580%2593Z)
+* [[Wikipedia] List of colors: A-F](https://en.wikipedia.org/wiki/List_of_colors:_A-F)
+* [[Wikipedia] List of colors: G-M](https://en.wikipedia.org/wiki/List_of_colors:_G-M)
+* [[Wikipedia] List of colors: N-Z](https://en.wikipedia.org/wiki/List_of_colors:_N-Z)
 
 ### Distribution of Available Colors
 
