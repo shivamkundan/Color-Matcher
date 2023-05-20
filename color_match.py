@@ -58,7 +58,7 @@ def hex_to_rgb(raw):
 		raw="0000"+raw
 	# If (R,G,B)=(0,0,0)
 	elif l==0:
-		raw="000000"
+		return (0,0,0)
 
 	R=int(raw[0:2],16)
 	G=int(raw[2:4],16)
